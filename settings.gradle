@@ -1,0 +1,3 @@
+include ':example-cashroulette-java'
+include ':example-cashroulette-kotlin'
+rootProject.name = "Android.SDK.CashRoulette.Example"
