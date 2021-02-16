@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         /** refresh ticket balance */
         binding.ticketBalance.setOnClickListener(v -> {
-            ticketBalance();
+            ticketCondition();
         });
 
         /** refresh ticket condition */
@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
             binding.wrapAuth.setVisibility(View.GONE);
             binding.wrapProfile.setVisibility(View.VISIBLE);
             binding.profileId.setText("ID : " + profile.getUserID());
-            ticketBalance();
             ticketCondition();
         } else {
             binding.wrapAuth.setVisibility(View.VISIBLE);
@@ -70,18 +69,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    void ticketBalance() {
-        CashRouletteSDK.getTicketBalance(count -> {
-            binding.ticketBalance.setText("총 티켓 : " + count);
-            Toast.makeText(MainActivity.this, "TicketBalance:" + count, Toast.LENGTH_SHORT).show();
-        });
-    }
-
-
     void ticketCondition() {
-        CashRouletteSDK.getTicketCondition(count -> {
-            binding.ticketCondition.setText("받을 수 있는 티켓 : " + count);
-            Toast.makeText(MainActivity.this, "TicketCondition:" + count, Toast.LENGTH_SHORT).show();
+        CashRouletteSDK.getTicketCondition((balance, condition) -> {
+            binding.ticketBalance.setText("총 티켓 : " + balance);
+            binding.ticketCondition.setText("받을 수 있는 티켓 : " + condition);
         });
     }
 

@@ -1,38 +1,58 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
-
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
-
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
-
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
-# joda
--keep class org.joda.** { *; }
--keep interface org.joda.** { *; }
-# core sdk
+# AVATYE SDK & SUPPORT
 -keep class com.avatye.cashroulette.** { *; }
-# support sdk library
 -keep class com.avatye.library.support.** { *; }
-
-# IGAWORKS
--dontwarn com.igaworks.**
+-keep interface com.avatye.cashroulette.** { *; }
+-keep interface com.avatye.library.support.** { *; }
+## IGAWORKS
 -keep class com.igaworks.** { *; }
+-dontwarn com.igaworks.**
 -keep class com.igaworks.gson.stream.** { *; }
 -keep class com.igaworks.adbrix.model.** { *; }
-## Channel Tlak
+## UnityAds
+-keep class com.unity3d.ads.** { *; }
+-keep class com.unity3d.services.** { *; }
+-dontwarn com.google.ar.core.**
+# Vungle
+-dontwarn com.vungle.warren.downloader.DownloadRequestMediator$Status
+-dontwarn com.vungle.warren.error.VungleError$ErrorCode
+-dontwarn com.google.android.gms.common.GoogleApiAvailabilityLight
+-dontwarn com.google.android.gms.ads.identifier.AdvertisingIdClient
+-dontwarn com.google.android.gms.ads.identifier.AdvertisingIdClient$Info
+-keep class com.moat.** { *; }
+-dontwarn com.moat.**
+-keepclassmembers,allowobfuscation class * {
+  @com.google.gson.annotations.SerializedName <fields>;
+}
+-dontwarn javax.annotation.**
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
+-dontwarn org.codehaus.mojo.animal_sniffer.*
+-dontwarn okhttp3.internal.platform.ConscryptPlatform
+# AdColony - Mediation
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}
+-dontwarn android.app.Activity
+-dontwarn com.httpmodule.**
+-dontwarn com.imgmodule.**
+-keep class com.httpmodule.** { *; }
+-keep class com.imgmodule.** { *; }
+-keep public class com.mobon.** { public *; }
+## FAN
+-keep class com.facebook.ads.** { *; }
+## Channel Talk
 -dontwarn com.zoyi.**
 -keep class com.google.zxing.** { *; }
--keep class com.zoyi.** { * ;}
+-keep class com.zoyi.** { *; }
+## JODA-DATETIME
+-dontwarn org.joda.convert.FromString
+-dontwarn org.joda.convert.ToString
+-keepnames class org.joda.** implements java.io.Serializable
+-keepclassmembers class org.joda.** implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    !static !transient <fields>;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}

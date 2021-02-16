@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
         /** refresh ticket balance */
         binding.ticketBalance.setOnClickListener {
-            ticketBalance()
+            ticketCondition()
         }
 
         /** refresh ticket condition */
@@ -57,7 +57,6 @@ class MainActivity : AppCompatActivity() {
             binding.wrapAuth.visibility = View.GONE
             binding.wrapProfile.visibility = View.VISIBLE
             binding.profileId.text = "ID : ${profile.userID}"
-            ticketBalance()
             ticketCondition()
         } else {
             binding.wrapAuth.visibility = View.VISIBLE
@@ -66,29 +65,11 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun ticketBalance() {
-        CashRouletteSDK.getTicketBalance(listener = object : ITicketCount {
-            override fun callback(count: Int) {
-                binding.ticketBalance.text = "총 티켓 : $count"
-                Toast.makeText(
-                    this@MainActivity,
-                    "TicketBalance:$count",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        })
-    }
-
-
     private fun ticketCondition() {
         CashRouletteSDK.getTicketCondition(listener = object : ITicketCount {
-            override fun callback(count: Int) {
-                binding.ticketCondition.text = "받을 수 있는 티켓 : $count"
-                Toast.makeText(
-                    this@MainActivity,
-                    "TicketCondition:$count",
-                    Toast.LENGTH_SHORT
-                ).show()
+            override fun callback(balance: Int, condition: Int) {
+                binding.ticketBalance.text = "총 티켓 : $balance"
+                binding.ticketCondition.text = "받을 수 있는 티켓 : $condition"
             }
         })
     }

@@ -13,13 +13,25 @@ android {
         versionName "1.0"
         multiDexEnabled true
     }
+    signingConfigs {
+        release {
+            storeFile file('./example-keystore')
+            storePassword '00000000'
+            keyAlias 'example'
+            keyPassword '00000000'
+        }
+    }
     buildFeatures {
         viewBinding true
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            debuggable true
         }
     }
     compileOptions {
@@ -34,5 +46,5 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.multidex:multidex:2.0.1'
     // cash roulette sdk
-    implementation 'org.bitbucket.avatye:sdk-cash-roulette:2021.2.3'
+    implementation 'org.bitbucket.avatye:sdk-cash-roulette:2021.2.5'
 }
