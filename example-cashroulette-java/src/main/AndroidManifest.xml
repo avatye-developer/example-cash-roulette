@@ -11,12 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidSDKCashRouletteExample">
+        <!-- region { KEYS } -->
         <meta-data
             android:name="avatye_appid"
             android:value="98d4d4c35d594451b21f54718e2bc986" />
+
         <meta-data
             android:name="avatye_appsecret"
             android:value="c395dbe200ad4493ade96fb92c988fcf1c8df2d3687d49a9ab6f31f7c05e2bf4" />
+        <!-- endregion -->
         <activity
             android:name=".IntroActivity"
             android:screenOrientation="portrait">
