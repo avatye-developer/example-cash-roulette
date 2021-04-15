@@ -20,6 +20,7 @@ allprojects {
         maven { url "https://jitpack.io" }
         maven { url 'https://fyber.bintray.com/marketplace' }
         maven { url 'https://adcolony.bintray.com/AdColony' }
+        maven { url 'https://dl.bintray.com/adpopcorn/IgawAdPopcornSSP' }
         maven { url 'http://devrepo.kakao.com:8088/nexus/content/groups/public/' }
     }
 }
