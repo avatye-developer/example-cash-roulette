@@ -7,4 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!-- status bar background color -->
+    <color name="axcr_color_primary_dark">#FFFFFF</color>
+    <!-- status bar accent color -->
+    <color name="axcr_color_accent">#333333</color>
 </resources>
