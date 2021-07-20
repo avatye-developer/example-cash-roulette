@@ -1,7 +1,6 @@
 package com.avatye.example.crk
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -9,25 +8,20 @@ import com.avatye.cashroulette.CashRouletteSDK
 import com.avatye.cashroulette.ITicketCount
 import com.avatye.cashroulette.business.model.GenderType
 import com.avatye.cashroulette.business.model.user.Profile
-import com.avatye.example.crk.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
-
-    private val binding: ActivityMainBinding by lazy {
-        ActivityMainBinding.inflate(LayoutInflater.from(this))
-    }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
         viewProfile()
 
         /** set profile */
-        binding.buttonAuth.setOnClickListener {
-            if (binding.userId.text.isNullOrEmpty()) {
+        button_auth.setOnClickListener {
+            if (user_id.text.isNullOrEmpty()) {
                 Toast.makeText(this, "아이디를 입력하세요", Toast.LENGTH_SHORT).show()
             } else {
                 setProfile()
@@ -35,17 +29,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         /** start cash roulette */
-        binding.buttonEnter.setOnClickListener {
+        button_enter.setOnClickListener {
             CashRouletteSDK.start(this)
         }
 
         /** refresh ticket balance */
-        binding.ticketBalance.setOnClickListener {
+        ticket_balance.setOnClickListener {
             ticketCondition()
         }
 
         /** refresh ticket condition */
-        binding.ticketCondition.setOnClickListener {
+        ticket_condition.setOnClickListener {
             ticketCondition()
         }
     }
@@ -54,13 +48,13 @@ class MainActivity : AppCompatActivity() {
     private fun viewProfile() {
         val profile = CashRouletteSDK.getProfile()
         if (profile.userID.isNotEmpty()) {
-            binding.wrapAuth.visibility = View.GONE
-            binding.wrapProfile.visibility = View.VISIBLE
-            binding.profileId.text = "ID : ${profile.userID}"
+            wrap_auth.visibility = View.GONE
+            wrap_profile.visibility = View.VISIBLE
+            profile_id.text = "ID : ${profile.userID}"
             ticketCondition()
         } else {
-            binding.wrapAuth.visibility = View.VISIBLE
-            binding.wrapProfile.visibility = View.GONE
+            wrap_auth.visibility = View.VISIBLE
+            wrap_profile.visibility = View.GONE
         }
     }
 
@@ -68,15 +62,15 @@ class MainActivity : AppCompatActivity() {
     private fun ticketCondition() {
         CashRouletteSDK.getTicketCondition(listener = object : ITicketCount {
             override fun callback(balance: Int, condition: Int) {
-                binding.ticketBalance.text = "총 티켓 : $balance"
-                binding.ticketCondition.text = "받을 수 있는 티켓 : $condition"
+                ticket_balance.text = "총 티켓 : $balance"
+                ticket_condition.text = "받을 수 있는 티켓 : $condition"
             }
         })
     }
 
 
     private fun setProfile() {
-        val userID = binding.userId.text.toString()
+        val userID = user_id.text.toString()
         val profile = Profile(userID = userID, birthYear = 2000, gender = GenderType.MALE)
         CashRouletteSDK.setProfile(profile)
         viewProfile()
