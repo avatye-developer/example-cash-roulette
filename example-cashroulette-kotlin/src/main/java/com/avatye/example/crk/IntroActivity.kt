@@ -15,6 +15,8 @@ class IntroActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }, 3000L)
+
+        com.mobon.manager.LogPrint.setLogPrint(true)
     }
 
     override fun onBackPressed() {
