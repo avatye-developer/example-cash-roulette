@@ -9,8 +9,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.avatye.cashroulette.CashRouletteSDK;
-import com.avatye.cashroulette.business.model.GenderType;
-import com.avatye.cashroulette.business.model.user.Profile;
 import com.avatye.example.crj.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,11 +54,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     void viewProfile() {
-        Profile profile = CashRouletteSDK.getProfile();
-        if (!TextUtils.isEmpty(profile.getUserID())) {
+        String appUserID = CashRouletteSDK.getAppUserID();
+        if (!TextUtils.isEmpty(appUserID)) {
             binding.wrapAuth.setVisibility(View.GONE);
             binding.wrapProfile.setVisibility(View.VISIBLE);
-            binding.profileId.setText("ID : " + profile.getUserID());
+            binding.profileId.setText("ID : " + appUserID);
             ticketCondition();
         } else {
             binding.wrapAuth.setVisibility(View.VISIBLE);
@@ -78,9 +76,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     void setProfile() {
-        String userID = binding.userId.getText().toString();
-        Profile profile = new Profile(userID, 2000, GenderType.MALE);
-        CashRouletteSDK.setProfile(profile);
+        String appUserID = binding.userId.getText().toString();
+        CashRouletteSDK.setAppUserID(appUserID);
         viewProfile();
     }
 }

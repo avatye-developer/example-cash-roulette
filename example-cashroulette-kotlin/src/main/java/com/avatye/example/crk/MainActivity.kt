@@ -6,8 +6,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.avatye.cashroulette.CashRouletteSDK
 import com.avatye.cashroulette.ITicketCount
-import com.avatye.cashroulette.business.model.GenderType
-import com.avatye.cashroulette.business.model.user.Profile
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -46,11 +44,11 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun viewProfile() {
-        val profile = CashRouletteSDK.getProfile()
-        if (profile.userID.isNotEmpty()) {
+        val appUserID = CashRouletteSDK.getAppUserID()
+        if (appUserID.isNotEmpty()) {
             wrap_auth.visibility = View.GONE
             wrap_profile.visibility = View.VISIBLE
-            profile_id.text = "ID : ${profile.userID}"
+            profile_id.text = "ID : ${appUserID}"
             ticketCondition()
         } else {
             wrap_auth.visibility = View.VISIBLE
@@ -70,9 +68,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun setProfile() {
-        val userID = user_id.text.toString()
-        val profile = Profile(userID = userID, birthYear = 2000, gender = GenderType.MALE)
-        CashRouletteSDK.setProfile(profile)
+        val appUserID = user_id.text.toString()
+        CashRouletteSDK.setAppUserID(appUserID)
         viewProfile()
     }
 }
