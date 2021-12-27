@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
-    buildToolsVersion "30.0.2"
+    compileSdkVersion 30
     defaultConfig {
-        applicationId "com.avatye.example.crk"
+        //applicationId "com.avatye.example.crk"
+        applicationId "com.buzzvil.adhours"
         minSdkVersion 16
-        targetSdkVersion 31
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -55,6 +55,14 @@ dependencies {
     implementation "androidx.multidex:multidex:$multidex_version"
     implementation "com.google.android.material:material:$material_version"
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    // pangle
+    implementation 'com.pangle.global:ads-sdk:4.0.1.4'
+
     // cash roulette sdk
-    implementation "org.bitbucket.avatye:sdk-cash-roulette:$cashroulette_sdk_version"
+    implementation ("org.bitbucket.avatye:sdk-cash-roulette:$cashroulette_sdk_version") {
+        //exclude group: 'com.unity3d.ads'
+        //exclude group: 'com.vungle'
+        //exclude group: 'com.facebook.android'
+    }
+
 }
