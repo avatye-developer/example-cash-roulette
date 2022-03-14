@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.avatye.cashroulette.CashRouletteSDK
 import com.avatye.cashroulette.ITicketCount
+import com.avatye.library.support.helper.SupportHelper
 import kotlinx.android.synthetic.main.activity_main.*
 
 

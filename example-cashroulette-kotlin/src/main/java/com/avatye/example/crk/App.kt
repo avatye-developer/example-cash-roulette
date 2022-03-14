@@ -1,5 +1,6 @@
 package com.avatye.example.crk
 
+import android.util.Log
 import androidx.multidex.MultiDexApplication
 import com.avatye.cashroulette.CashRouletteSDK
 
@@ -11,7 +12,8 @@ class App : MultiDexApplication() {
          * appID, appSecret -> AndroidManifest.xml 정의된 경우
          * CashRouletteSDK.initialize(application, log:Boolean)
          */
-        CashRouletteSDK.initialize(application = this, log = true)
+        val systemLog = Log.isLoggable("TEST", Log.DEBUG)
+        CashRouletteSDK.initialize(application = this, log = systemLog)
 
         /**
          * appID, appSecret -> Application에서 정의
@@ -23,6 +25,6 @@ class App : MultiDexApplication() {
         appSecret = "c395dbe200ad4493ade96fb92c988fcf1c8df2d3687d49a9ab6f31f7c05e2bf4",
         log = true
         )
-         */
+        */
     }
 }

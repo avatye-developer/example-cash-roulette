@@ -8,8 +8,7 @@ plugins {
 android {
     compileSdkVersion 30
     defaultConfig {
-        //applicationId "com.avatye.example.crk"
-        applicationId "com.buzzvil.adhours"
+        applicationId "com.avatye.example.crk"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
@@ -31,6 +30,7 @@ android {
     */
     buildTypes {
         release {
+            debuggable false
             minifyEnabled true
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -55,14 +55,6 @@ dependencies {
     implementation "androidx.multidex:multidex:$multidex_version"
     implementation "com.google.android.material:material:$material_version"
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    // pangle
-    implementation 'com.pangle.global:ads-sdk:4.0.1.4'
-
     // cash roulette sdk
-    implementation ("org.bitbucket.avatye:sdk-cash-roulette:$cashroulette_sdk_version") {
-        //exclude group: 'com.unity3d.ads'
-        //exclude group: 'com.vungle'
-        //exclude group: 'com.facebook.android'
-    }
-
+    implementation 'org.bitbucket.avatye:sdk-cash-roulette:2022.3.7'
 }
