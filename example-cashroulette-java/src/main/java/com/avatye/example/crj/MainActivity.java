@@ -2,13 +2,16 @@ package com.avatye.example.crj;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.avatye.cashroulette.CashRouletteSDK;
+import com.avatye.cashroulette.INotificationStatus;
 import com.avatye.example.crj.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -49,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
         /** refresh ticket condition */
         binding.ticketCondition.setOnClickListener(v -> {
             ticketCondition();
+        });
+
+        CashRouletteSDK.setNotificationStatus(this, true, new INotificationStatus() {
+            @Override
+            public void onStatus(boolean isActive, int code, @NonNull String reason) {
+                Log.d("Notification", "isActive:" + isActive + ", code:" + code + ", reason:" + reason);
+            }
         });
     }
 
